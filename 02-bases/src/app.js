@@ -10,8 +10,8 @@ const { getAge, getUUID, buildLogger } = require('./plugins');
 
 const logger = buildLogger('app.js');
 
-logger.log('Hola mundo');
-logger.error('algo malo')
+/* logger.log('Hola mundo');
+logger.error('algo malo') */
 
 
 const pokemonNameByid = getPokemonById(2 , (pokemon) => {
