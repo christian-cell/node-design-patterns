@@ -7,9 +7,8 @@
 // esta function en este caso el app.js
 // const { getAge , getUUID } = require('../plugins'); 
 
-import { getUUID , getAge } from '../plugins';
 
-interface BuildMakePersonOptions {
+export interface BuildMakePersonOptions {
 
     getUUID: () => string;
     getAge: (birthdate: string) => number;

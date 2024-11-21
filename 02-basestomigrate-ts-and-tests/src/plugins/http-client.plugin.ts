@@ -25,7 +25,21 @@ export const httpClientPlugin = {
         return await resp.json(); */
     },
 
-    /* post: async(url: string, body) => {}, type of body???
-    put: async(url: string, body) => {},
-    delete: async(url: string, body) => {}, */
+    post: async(url: string, body:any) => {
+
+        throw new Error('Not implemented yet');
+    }, 
+
+    put: async(url: string, body:any) => {
+
+        throw new Error('Not implemented yet');
+    },
+
+    delete: async(url: string ,body: any) => {
+        
+        throw new Error('Not implemented yet');
+        
+    }
+        
+              
 };
