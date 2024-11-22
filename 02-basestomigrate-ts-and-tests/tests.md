@@ -74,3 +74,23 @@ tambien podemos correr para que nos muestre la cobertura de nuestros tests
 $ npm run test:coverage
 
 esto genera una carpeta coverage dentro hay un .html que podemos ver en el navegador
+
+vamos a previnir en caso de que haya un fallo en el test, que se corra este script del package.json
+```
+"build": "rimraf ./dist && tsc",
+```
+añadimos en la primera línea en nuestro tsconfig.json
+```
+"include": ["src/**/*"],
+"exclude": ["node_modules", "**/*.spec.ts","**/*.test.ts"],
+```
+
+instalamos rimraf
+
+$ npm i --save-dev rimraf
+
+modificamos los siguientes scripts en el package.json
+```
+    "build": "npm run test && rimraf ./dist && tsc",
+    "start": "node dist/app.js"
+```
