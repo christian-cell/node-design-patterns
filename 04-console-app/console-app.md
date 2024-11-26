@@ -33,3 +33,5 @@ $ npx ts-node src/app.loginc.ts --base 7
 
 para arrancar la app adicionalmente le podemos pasar todos los argumentos que aparecen en el args.plugin.ts
 
+
+

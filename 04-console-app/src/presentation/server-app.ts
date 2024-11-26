@@ -11,13 +11,16 @@ interface RunOptions{
 
 export class ServerApp{
 
-    static async run(options: RunOptions){
+    static run(options: RunOptions){
+
+        console.log('Server running...');
+        console.log('File created!');
 
         const { base, limit, showTable, fileDestination, fileName } = options || {};
 
         const table = new CreateTable().execute({ base, limit });
 
-        const wasCreated = new SaveFile().excute({ 
+        const wasCreated = new SaveFile().execute({ 
         
             fileDestination: `${fileDestination}/table-${base}`,
             fileContent: table,
@@ -26,6 +29,8 @@ export class ServerApp{
 
         if(showTable)console.log(table);
 
-        wasCreated ? console.log('file created') : console.error('Error creating file');
+        wasCreated ? 
+            console.log('File created!') : 
+            console.error('File not created!');
     }
 }

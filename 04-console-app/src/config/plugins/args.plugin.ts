@@ -1,6 +1,5 @@
 
 import yargs  from 'yargs';
-import { hideBin } from 'yargs/helpers';
 
     /* 
     * en el caso de querer probar alguna opción debemos pasarle el argumento de esta manera,
@@ -46,7 +45,7 @@ import { hideBin } from 'yargs/helpers';
         /* ('argv : ' , argv);
         console.log('options :' , options); */
 
-        if( argv.b < 1 ) throw new Error('Error base must be a number');
+        if( argv.b < 1 ) throw new Error('Error base must be a valid number');
 
         return true;
     })

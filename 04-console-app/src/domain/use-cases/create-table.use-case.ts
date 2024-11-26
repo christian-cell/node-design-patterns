@@ -26,7 +26,9 @@ export class CreateTable implements CreateTableUseCase{
 
         for (let i = 1; i <= limit; i++) {
 
-            outputMessage += `${i} x ${base} = ${(i * base)} \n`; 
+            outputMessage += `${i} x ${base} = ${(i * base)}`; 
+
+            if(i < limit) outputMessage += '\n';
         }
 
         return outputMessage;

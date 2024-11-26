@@ -2,7 +2,7 @@ import fs from 'fs';
 
 export interface SaveFileUseCase{
 
-    excute:( options: Options ) => boolean;
+    execute:( options: Options ) => boolean;
 }
 
 export interface Options{
@@ -21,20 +21,21 @@ export class SaveFile implements SaveFileUseCase{
         */
     ){}
 
-    excute({fileContent, fileDestination = 'outputs', fileName = 'table'}: Options) :boolean{
+    execute({fileContent, fileDestination = 'outputs', fileName = 'table'}: Options) :boolean{
 
         // const outputPath = `ouputs/`;
 
         try {
 
             fs.mkdirSync(fileDestination , {recursive : true});
-            fs.writeFileSync(`${fileDestination}/tabla-${fileName}.txt`, fileContent);
+            fs.writeFileSync(`${fileDestination}/${fileName}.txt`, fileContent);
 
             return true;
 
         } catch (error) {
             
             console.error( error );
+            
             return false
         }
     }
