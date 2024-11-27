@@ -1,8 +1,8 @@
-import { LogDatesource } from "../../domain/datasources/log.datasource";
+import { LogDatasource } from "../../domain/datasources/log.datasource";
 import { LogEntity, LogSeverityLevel } from "../../domain/entities/log.entity";
 import fs from 'fs';
 
-export class FileSystemDatasource implements LogDatesource{
+export class FileSystemDatasource implements LogDatasource{
 
     private readonly logPath =        'logs/';
     private readonly allLogsPath =    'logs/logs-all.log';

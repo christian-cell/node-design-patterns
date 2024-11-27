@@ -1,25 +1,41 @@
-{"level":"high", "message":"Hola mundo", "createdAt":"234234234234234234"}\n
-{"level":"high", "message":"Hola mundo", "createdAt":"234234234234234234"}\n
-{"level":"high", "message":"Hola mundo", "createdAt":"234234234234234234"}\n
-{"level":"high", "message":"Hola mundo", "createdAt":"234234234234234234"}\n
-{"level":"high", "message":"Hola mundo", "createdAt":"234234234234234234"}\n
-{"level":"high", "message":"Hola mundo", "createdAt":"234234234234234234"}\n
-{"level":"high", "message":"Hola mundo", "createdAt":"234234234234234234"}\n
-{"level":"high", "message":"Hola mundo", "createdAt":"234234234234234234"}\n
-{"level":"high", "message":"Hola mundo", "createdAt":"234234234234234234"}\n
-{"level":"high", "message":"Hola mundo", "createdAt":"234234234234234234"}\n
-{"level":"high", "message":"Hola mundo", "createdAt":"234234234234234234"}\n
-{"level":"high", "message":"Hola mundo", "createdAt":"234234234234234234"}\n
-{"level":"high", "message":"Hola mundo", "createdAt":"234234234234234234"}\n
-{"level":"high", "message":"Hola mundo", "createdAt":"234234234234234234"}\n
-{"level":"high", "message":"Hola mundo", "createdAt":"234234234234234234"}\n
-{"level":"high", "message":"Hola mundo", "createdAt":"234234234234234234"}\n
-{"level":"high", "message":"Hola mundo", "createdAt":"234234234234234234"}\n
-{"level":"high", "message":"Hola mundo", "createdAt":"234234234234234234"}\n
-{"level":"high", "message":"Hola mundo", "createdAt":"234234234234234234"}\n
-{"level":"high", "message":"Hola mundo", "createdAt":"234234234234234234"}\n
-{"level":"high", "message":"Hola mundo", "createdAt":"234234234234234234"}\n
-{"level":"high", "message":"Hola mundo", "createdAt":"234234234234234234"}\n
-{"level":"high", "message":"Hola mundo", "createdAt":"234234234234234234"}\n
-{"level":"high", "message":"Hola mundo", "createdAt":"234234234234234234"}\n
-{"level":"high", "message":"Hola mundo", "createdAt":"234234234234234234"}\n
+{"message":"Service https://google.com working","level":"low","createdAt":"2024-11-27T08:57:40.361Z"}
+{"message":"Service https://google.com working","level":"low","createdAt":"2024-11-27T08:57:45.335Z"}
+{"message":"Service https://google.com working","level":"low","createdAt":"2024-11-27T08:58:25.537Z"}
+{"message":"Service https://google.com working","level":"low","createdAt":"2024-11-27T08:58:30.440Z"}
+{"message":"TypeError: fetch failed","level":"low","createdAt":"2024-11-27T09:00:00.101Z"}
+{"message":"TypeError: fetch failed","level":"low","createdAt":"2024-11-27T09:00:05.009Z"}
+{"message":"TypeError: fetch failed","level":"low","createdAt":"2024-11-27T09:00:10.021Z"}
+{"message":"TypeError: fetch failed","level":"low","createdAt":"2024-11-27T09:00:15.014Z"}
+{"message":"TypeError: fetch failed","level":"low","createdAt":"2024-11-27T09:00:20.020Z"}
+{"message":"TypeError: fetch failed","level":"high","createdAt":"2024-11-27T09:00:45.069Z"}
+{"message":"TypeError: fetch failed","level":"high","createdAt":"2024-11-27T09:00:50.021Z"}
+{"message":"TypeError: fetch failed","level":"high","createdAt":"2024-11-27T09:00:55.009Z"}
+{"message":"TypeError: fetch failed","level":"high","createdAt":"2024-11-27T09:01:00.007Z"}
+{"message":"TypeError: fetch failed","level":"high","createdAt":"2024-11-27T09:01:05.016Z"}
+{"message":"TypeError: fetch failed","level":"high","createdAt":"2024-11-27T09:01:10.016Z"}
+{"message":"TypeError: fetch failed","level":"high","createdAt":"2024-11-27T09:01:15.005Z"}
+{"message":"TypeError: fetch failed","level":"high","createdAt":"2024-11-27T09:01:20.015Z"}
+{"message":"http://localhost:3000 is not ok , error : TypeError: fetch failed","level":"high","createdAt":"2024-11-27T09:01:25.115Z"}
+{"message":"http://localhost:3000 is not ok , error : TypeError: fetch failed","level":"high","createdAt":"2024-11-27T09:01:30.017Z"}
+{"message":"http://localhost:3000 is not ok , error : TypeError: fetch failed","level":"high","createdAt":"2024-11-27T09:01:35.019Z"}
+{"message":"http://localhost:3000 is not ok , error : TypeError: fetch failed","level":"high","createdAt":"2024-11-27T09:01:40.015Z"}
+{"message":"http://localhost:3000 is not ok , error : TypeError: fetch failed","level":"high","createdAt":"2024-11-27T09:01:45.005Z"}
+{"message":"http://localhost:3000 is not ok , error : TypeError: fetch failed","level":"high","createdAt":"2024-11-27T09:01:50.015Z"}
+{"message":"http://localhost:3000 is not ok , error : TypeError: fetch failed","level":"high","createdAt":"2024-11-27T09:01:55.014Z"}
+{"message":"http://localhost:3000 is not ok , error : TypeError: fetch failed","level":"high","createdAt":"2024-11-27T09:02:00.018Z"}
+{"message":"http://localhost:3000 is not ok , error : TypeError: fetch failed","level":"high","createdAt":"2024-11-27T09:02:05.012Z"}
+{"message":"http://localhost:3000 is not ok , error : TypeError: fetch failed","level":"high","createdAt":"2024-11-27T09:02:10.012Z"}
+{"message":"http://localhost:3000 is not ok , error : TypeError: fetch failed","level":"high","createdAt":"2024-11-27T09:02:15.022Z"}
+{"message":"http://localhost:3000 is not ok , error : TypeError: fetch failed","level":"high","createdAt":"2024-11-27T09:02:20.006Z"}
+{"message":"http://localhost:3000 is not ok , error : TypeError: fetch failed","level":"high","createdAt":"2024-11-27T09:02:25.008Z"}
+{"message":"http://localhost:3000 is not ok , error : TypeError: fetch failed","level":"high","createdAt":"2024-11-27T09:04:25.068Z"}
+{"message":"http://localhost:3000 is not ok , error : TypeError: fetch failed","level":"high","createdAt":"2024-11-27T09:04:30.037Z"}
+{"message":"http://localhost:3000 is not ok , error : TypeError: fetch failed","level":"high","createdAt":"2024-11-27T09:04:35.007Z"}
+{"message":"http://localhost:3000 is not ok , error : TypeError: fetch failed","level":"high","createdAt":"2024-11-27T09:04:40.075Z"}
+{"message":"Service https://google.com working","level":"low","createdAt":"2024-11-27T09:07:40.661Z"}
+{"message":"Service https://google.com working","level":"low","createdAt":"2024-11-27T09:07:45.341Z"}
+{"message":"Service https://google.com working","level":"low","createdAt":"2024-11-27T09:07:50.344Z"}
+{"message":"Service https://google.com working","level":"low","createdAt":"2024-11-27T09:07:55.881Z"}
+{"message":"Service https://google.com working","level":"low","createdAt":"2024-11-27T09:08:00.386Z"}
+{"message":"Service https://google.com working","level":"low","createdAt":"2024-11-27T09:08:05.452Z"}
+{"message":"Service https://google.com working","level":"low","createdAt":"2024-11-27T09:08:10.492Z"}
