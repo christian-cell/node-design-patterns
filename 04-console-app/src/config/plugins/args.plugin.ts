@@ -1,5 +1,5 @@
 
-import yargs  from 'yargs';
+import yargs from 'yargs';
 
     /* 
     * en el caso de querer probar alguna opción debemos pasarle el argumento de esta manera,

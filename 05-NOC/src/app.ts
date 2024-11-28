@@ -53,7 +53,9 @@ async function main(){
 
     console.log(newMongoLog);
 
-    const logs = await LogModel.find();
+    const mongoLogs = await LogModel.find();
+
+    console.log( 'mongoLogs : ' , mongoLogs );
     
     // console.log(logs[2].message);
 
