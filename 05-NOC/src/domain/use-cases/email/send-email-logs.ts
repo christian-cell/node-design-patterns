@@ -26,7 +26,7 @@ export class SendEmailLogs implements SendLogEmailUseCase{
                 throw new Error('Email log was not sent');
             }
 
-            const log = new LogEntity({
+            /* const log = new LogEntity({
 
                 message:`log email sent`,
                 level: LogSeverityLevel.low,
@@ -34,13 +34,13 @@ export class SendEmailLogs implements SendLogEmailUseCase{
                 createdAt: new Date()
             })
 
-            this.logRepository.saveLog( log );
+            this.logRepository.saveLog( log ); */
 
             return true;
 
         } catch (error) {
             
-            const log = new LogEntity({
+            /* const log = new LogEntity({
 
                 message:`${error}`,
                 level: LogSeverityLevel.high,
@@ -48,13 +48,9 @@ export class SendEmailLogs implements SendLogEmailUseCase{
                 createdAt: new Date()
             })
 
-            this.logRepository.saveLog( log );
+            this.logRepository.saveLog( log ); */
 
             return false;
         }
-
-        return true;
     };
-
-
 }

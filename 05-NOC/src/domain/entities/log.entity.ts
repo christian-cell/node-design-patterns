@@ -10,7 +10,7 @@ export interface LogEntityOptions{
 
     level:     LogSeverityLevel;                                       
     message :  string;                                      
-    createdAt :Date;
+    createdAt?:Date;
     origin?:   string;                      
 }
 
@@ -27,13 +27,15 @@ export class LogEntity{
 
         this.message = message;
         this.level = level;
-        this.createdAt = createdAt;
+        this.createdAt = createdAt || new Date();
         this.origin = origin  || '';
     }
 
     static fromJson = ( json: string ): LogEntity => {
 
-        const { message, level, createdAt }  = JSON.parse(json);
+        json = ( json === '' ) ? '{}' : json;
+
+        const { message, level, createdAt } = JSON.parse(json) || {};
 
         const log = new LogEntity({
             message,  
@@ -43,6 +45,18 @@ export class LogEntity{
         });
 
         log.createdAt = new Date( createdAt );
+
+        return log;
+    }
+
+    static fromObject = ( object: { [ key: string ]:any } ) => {
+
+        const { message, level , createdAt, origin } = object || {};
+
+        const log = new LogEntity({
+
+            message, level , createdAt, origin
+        })
 
         return log;
     }
