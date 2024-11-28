@@ -1,85 +1,84 @@
-import { LogDatasource } from "../../domain/datasources/log.datasource";
-import { LogEntity, LogSeverityLevel } from "../../domain/entities/log.entity";
 import fs from 'fs';
 
-export class FileSystemDatasource implements LogDatasource{
+import { LogDatasource } from '../../domain/datasources/log.datasource';
+import { LogEntity, LogSeverityLevel } from '../../domain/entities/log.entity';
 
-    private readonly logPath =        'logs/';
-    private readonly allLogsPath =    'logs/logs-all.log';
-    private readonly mediumLogsPath = 'logs/logs-medium.log';
-    private readonly highLogsPath =   'logs/logs-high.log';
 
-    constructor(){
 
-        /* 
-        * ensure files already exists
-        */
+export class FileSystemDatasource implements LogDatasource {
 
-        this.createLogsFiles();
+  private readonly logPath = 'logs/';
+  private readonly allLogsPath    = 'logs/logs-all.log';
+  private readonly mediumLogsPath = 'logs/logs-medium.log';
+  private readonly highLogsPath   = 'logs/logs-high.log';
+
+  constructor() {
+    this.createLogsFiles();
+  }
+
+  private createLogsFiles = () => {
+    if ( !fs.existsSync( this.logPath ) ) {
+      fs.mkdirSync( this.logPath );
     }
 
-    private createLogsFiles = () => {
+    [
+      this.allLogsPath,
+      this.mediumLogsPath,
+      this.highLogsPath,
+    ].forEach( path => {
+      if ( fs.existsSync( path ) ) return;
 
-        /* 
-        * two ways , first to do not repeat yourself
-        */
+      fs.writeFileSync( path, '' );
+    });
+  }
 
-        [ this.allLogsPath, this.mediumLogsPath, this.logPath , this.highLogsPath ].forEach( path => {
 
-            if(!fs.existsSync(path))fs.writeFileSync( path , '' );
-        });
+  async saveLog( newLog: LogEntity ): Promise<void> {
+    
+    const logAsJson = `${ JSON.stringify(newLog) }\n`;
 
-        /* if( !fs.existsSync( this.logPath ) ) fs.mkdirSync(this.logPath);
+    fs.appendFileSync( this.allLogsPath, logAsJson );
 
-        if( !fs.existsSync( this.allLogsPath ) ) fs.mkdirSync(this.allLogsPath);
-        
-        if( !fs.existsSync( this.mediumLogsPath ) ) fs.mkdirSync(this.mediumLogsPath);
+    if ( newLog.level === LogSeverityLevel.low ) return;
 
-        if( !fs.existsSync( this.highLogsPath ) ) fs.mkdirSync(this.highLogsPath); */
+    if ( newLog.level === LogSeverityLevel.medium ) {
+      fs.appendFileSync( this.mediumLogsPath, logAsJson );
+    } else {
+      fs.appendFileSync( this.highLogsPath, logAsJson );
     }
 
-    async saveLog(newLog: LogEntity): Promise<void> {
+  }
 
-        const logAsJson = `${JSON.stringify(newLog)}\n`;
 
-        fs.appendFileSync( this.allLogsPath, `${JSON.stringify(newLog)}\n` );
 
-        if( newLog.level === LogSeverityLevel.low ) return; //do not do nothing
+  private getLogsFromFile = ( path: string ): LogEntity[] => {
+    const content = fs.readFileSync( path, 'utf-8' );
+    const logs = content.split('\n').map(LogEntity.fromJson);
+    // const logs = content.split('\n').map( 
+    //   log => LogEntity.fromJson(log)
+    // );
+    
+    return logs;
+  }
 
-        if( newLog.level === LogSeverityLevel.medium ) {
 
-            fs.appendFileSync( this.mediumLogsPath, logAsJson );
+  async getLogs( severityLevel: LogSeverityLevel ): Promise<LogEntity[]> {
 
-        } else {
+    switch( severityLevel ) {
+      case LogSeverityLevel.low:
+        return this.getLogsFromFile(this.allLogsPath);
+      
+      case LogSeverityLevel.medium:
+        return this.getLogsFromFile(this.mediumLogsPath);
 
-            fs.appendFileSync( this.highLogsPath, logAsJson );
-        }
+      case LogSeverityLevel.high:
+        return this.getLogsFromFile(this.highLogsPath);
+
+      default:
+        throw new Error(`${ severityLevel } not implemented`);
     }
 
-    private getLogsFromFile = ( path: string ): LogEntity[] => {
 
-        const content = fs.readFileSync( path , 'utf-8');  
+  } 
 
-        const logs = content.split('\n').map( LogEntity.fromJson );
-
-        return logs;
-    }
-
-    async getLogs(severityLevel: LogSeverityLevel): Promise<LogEntity[]> {
-
-        switch ( severityLevel ) {
-            
-            case LogSeverityLevel.low:
-            return this.getLogsFromFile( this.allLogsPath );
-
-            case LogSeverityLevel.medium:
-            return this.getLogsFromFile( this.mediumLogsPath );
-
-            case LogSeverityLevel.high:
-            return this.getLogsFromFile( this.highLogsPath );
-
-            default:
-                throw new Error (`${severityLevel} not implemented`);
-        }
-    }
 }
