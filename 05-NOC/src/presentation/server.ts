@@ -3,7 +3,7 @@ import { CheckService } from "../domain/use-cases/checks/check-service";
 import { CheckServiceMultiple } from "../domain/use-cases/checks/check-service-multiple";
 import { SendEmailLogs } from "../domain/use-cases/email/send-email-logs";
 import { FileSystemDatasource } from "../infrastructure/datasources/file-system.datasource";
-import { MongoLogDataSource } from "../infrastructure/datasources/mongo-log.datasource";
+import { MongoLogDatasource } from "../infrastructure/datasources/mongo-log.datasource";
 import { PostgresLogDatasource } from "../infrastructure/datasources/postgres-log.datasource";
 import { LogRepositoryImpl } from "../infrastructure/repositories/log.repository.impl";
 import { CronService } from "./cron/cron-service";
@@ -14,7 +14,7 @@ const fileSystemLogRepository = new LogRepositoryImpl(
 );
 
 const MongoLogRepository = new LogRepositoryImpl(
-    new MongoLogDataSource()
+    new MongoLogDatasource()
 );
 
 const PostgresLogRepository = new LogRepositoryImpl(
@@ -61,7 +61,7 @@ export class Server{
         const lowLogs = await MongoLogRepository.getLogs(LogSeverityLevel.high);
         const mediumLogs = await MongoLogRepository.getLogs(LogSeverityLevel.high);
 
-        console.log('lowLogs : ' ,lowLogs);
+        // console.log('lowLogs : ' ,lowLogs);
 
         CronService.createJob(
 

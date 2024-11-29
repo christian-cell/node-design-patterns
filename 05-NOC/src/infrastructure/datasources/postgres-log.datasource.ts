@@ -17,6 +17,11 @@ export class PostgresLogDatasource implements LogDatasource {
 
         const level = severityEnum[log.level];
 
+        const mydata = {
+            ...log,
+            level : level
+        }
+
         const newLog = await prismaClient.logModel.create({
 
             data: {
