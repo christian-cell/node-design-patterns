@@ -44,13 +44,14 @@ async function main() {
 
     // 3. Crear productos
     const products = await ProductModel.insertMany(
+
         seedData.products.map( product => {
 
-        return {
-            ...product,
-            user: users[ randomBetween0AndX( seedData.users.length - 1 ) ]._id,
-            category: categories[ randomBetween0AndX( seedData.categories.length - 1 )  ]._id
-        }
+            return {
+                ...product,
+                user: users[ randomBetween0AndX( seedData.users.length - 1 ) ]._id,
+                category: categories[ randomBetween0AndX( seedData.categories.length - 1 )  ]._id
+            }
         })
     );
 
