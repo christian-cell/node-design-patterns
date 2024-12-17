@@ -6,11 +6,22 @@ export class DiscordService{
 
     constructor(){}
 
-    public async notify( message: string ){
+    public async notify( message: string , image: string = '' ){
 
         const body = {
 
-            content: message
+            content: message,
+            /* 
+            * to send gifs
+            */
+            /* embeds: [
+                {
+                    image: {
+
+                        url: ''
+                    }
+                }
+            ] */
         }
 
         const resp = await fetch( this.discordWebhookUrl, {

@@ -19,7 +19,7 @@ export class GithubController{
         const payload = req.body;
 
         let message: string = ``;
-        
+
         switch (githubEvent) {
 
             case 'star':
@@ -33,6 +33,8 @@ export class GithubController{
             default:
                 message = `Unknown event : ${githubEvent}`;
         }
+
+        console.log(message);
 
         this.discordService.notify(message)
             .then( () => res.status(200).send('Accepted') )

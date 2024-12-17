@@ -1,6 +1,7 @@
 import express, { Request, Response } from 'express';
 import { envs } from './config';
 import { GithubController } from './presentation/github/controller';
+import { GithubSha256Middleware } from './presentation/middlewares/github-sha256.middleware';
 
 (() => {
 
@@ -15,6 +16,10 @@ function main(){
     const controller = new GithubController();
 
     app.use( express.json() );
+
+    app.use( GithubSha256Middleware.verifySignature );
+
+    console.log('entró por aquí');
 
     app.post('/api/github', controller.webhookHandler);
 

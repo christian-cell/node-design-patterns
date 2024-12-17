@@ -15,7 +15,6 @@ export class GitHubService{
 
     public onIssue( payload: GitHubIssuePayload ):string{
 
-
         const { action, issue } = payload || {};
 
         if( action === 'opened' ){
