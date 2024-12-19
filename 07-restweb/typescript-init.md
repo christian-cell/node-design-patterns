@@ -1,3 +1,5 @@
+$ npm init -y
+
 1 Typescript y depedencias
 
 ```
