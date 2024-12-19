@@ -5,6 +5,7 @@ import { Server } from './presentation/server';
 import { WssService } from './presentation';
 
 (async()=> {
+
   main();
 })();
 
@@ -12,13 +13,15 @@ import { WssService } from './presentation';
 function main() {
 
   const server = new Server({
-    port: envs.PORT,
-    routes: AppRoutes.routes,
+    port: envs.PORT
+
   });
 
   const httpServer = createServer( server.app );
 
   WssService.initWss({ server: httpServer })
+
+  server.setRoutes( AppRoutes.routes );
 
   httpServer.listen( envs.PORT , () => {
 

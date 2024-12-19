@@ -1,87 +1,107 @@
 import { UuidAdapter } from '../../config/uuid.adapter';
-import { Ticket } from '../../domain';
+import { Ticket } from '../../domain/interfaces/ticket';
+import { WssService } from './wss.service';
 
-export class TicketService{
 
-    public readonly tickets : Ticket[] = [
 
-        { id: UuidAdapter.v4() , number: 1, createdAt: new Date(), done:false },
-        { id: UuidAdapter.v4() , number: 2, createdAt: new Date(), done:false },
-        { id: UuidAdapter.v4() , number: 3, createdAt: new Date(), done:false },
-        { id: UuidAdapter.v4() , number: 4, createdAt: new Date(), done:false },
-        { id: UuidAdapter.v4() , number: 5, createdAt: new Date(), done:false },
-        { id: UuidAdapter.v4() , number: 6, createdAt: new Date(), done:false },
+export class TicketService {
+
+    constructor(
+
+        private readonly wssService = WssService.instance,
+    ) {}
+
+
+    public tickets: Ticket [] = [
+
+        { id: UuidAdapter.v4(), number: 1, createdAt: new Date(), done: false },
+        { id: UuidAdapter.v4(), number: 2, createdAt: new Date(), done: false },
+        { id: UuidAdapter.v4(), number: 3, createdAt: new Date(), done: false },
+        { id: UuidAdapter.v4(), number: 4, createdAt: new Date(), done: false },
+        { id: UuidAdapter.v4(), number: 5, createdAt: new Date(), done: false },
+        { id: UuidAdapter.v4(), number: 6, createdAt: new Date(), done: false },
     ];
 
-    private readonly _workingOnTickets: Ticket[] = [];
+    private readonly workingOnTickets: Ticket[] = [];
 
-    public get pendingTickets():Ticket[]{
+    public get pendingTickets():Ticket[] {
 
         return this.tickets.filter( ticket => !ticket.handleAtDesk );
     }
 
-    public get lastWorkingOnTickets():Ticket[]{
+    public get lastWorkingOnTickets():Ticket[] {
 
-        return this._workingOnTickets.splice( 0, 4 );
+        return this.workingOnTickets.slice(0,4);
     }
 
-    public get lastTicketNumber():number {
+    public get lastTicketNumber(): number {
 
-        return this.tickets.length > 0 ? this.tickets.at(-1)!.number : 0 //obtenemos el último ticket
+        return this.tickets.length > 0 ? this.tickets.at(-1)!.number : 0;
     }
 
-    public createTicket( /* ticket : Ticket */ ){
+    public createTicket() {
 
-        const ticket : Ticket = {
+        const ticket: Ticket = {
 
             id: UuidAdapter.v4(),
             number: this.lastTicketNumber + 1,
             createdAt: new Date(),
             done: false,
             handleAt: undefined,
-            handleAtDesk: undefined
+            handleAtDesk: undefined,
         }
 
-        this.tickets.push( ticket );
+        this.tickets.push(ticket);
+        this.onTicketNumberChanged();
 
         return ticket;
     }
 
-    public drawTicket( desk: string ){
+    public drawTicket(desk: string) {
 
         const ticket = this.tickets.find( t => !t.handleAtDesk );
-
-        if( !ticket ) return { status : 'error' , message: 'No hay tickets pendientes' };
+        
+        if ( !ticket ) return { status: 'error', message: 'No hay tickets pendientes' };
 
         ticket.handleAtDesk = desk;
 
         ticket.handleAt = new Date();
 
-        this._workingOnTickets.unshift({ ...ticket });
+        this.workingOnTickets.unshift({...ticket});
 
-        //TODO WS
+        this.onTicketNumberChanged();
 
-        return { status: 'ok' , ticket };
+        this.onWorkingOnChanged();
+
+        return { status: 'ok', ticket }
     }
 
-    public onFinishedTicket ( id: string ){
+    public onFinishedTicket( id: string ) {
 
         const ticket = this.tickets.find( t => t.id === id );
 
-        if( !ticket ) return { status: 'error' , message : 'Ticket no encontrado' };
+        if ( !ticket ) return { status: 'error', message: 'Ticket no encontrado' };
 
-        this.tickets.map( ticket => {
+        this.tickets = this.tickets.map( ticket => {
 
-            if( ticket.id === id ){
+        if ( ticket.id === id ) {
 
-                ticket.done = true;
-            }
+            ticket.done = true;
+        }
 
-            return ticket;
-        })
+        return ticket;
+        });
 
-        return { status : 'ok' };
+        return { status: 'ok' }
     }
 
-    
+    private onTicketNumberChanged() {
+        
+        this.wssService.sendMessage('on-ticket-count-changed', this.pendingTickets.length );
+    }
+
+    private onWorkingOnChanged() {
+
+        this.wssService.sendMessage('on-working-changed', this.lastWorkingOnTickets );
+    }
 }

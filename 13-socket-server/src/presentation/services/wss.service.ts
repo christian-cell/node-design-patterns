@@ -45,6 +45,17 @@ export class WssService{
         WssService._instance = new WssService( options );
     }
 
+    public sendMessage( type: string, payload: Object ){
+
+        this.wss.clients.forEach( client => {
+
+            if( client.readyState === WebSocket.OPEN ){
+
+                client.send( JSON.stringify({ type, payload }) );
+            }
+        })
+    }
+
     public start(){
 
         /* IMPORTANTE importar WebSocket desde ws porque si de lo contrario por defecto usa el de node y tiene otros métodos */
